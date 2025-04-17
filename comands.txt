@@ -1,0 +1,21 @@
+npm create vite@latest legal-ai\
+react
+javascript
+
+cd desafio-legalai
+npm install
+npm run dev
+
+npm install -D tailwindcss postcss autoprefixer
+
+npx tailwindcss init -p
+
+npx --package tailwindcss tailwindcss init -p
+
+
+
+
+
+
+npm cache clean --force
+
