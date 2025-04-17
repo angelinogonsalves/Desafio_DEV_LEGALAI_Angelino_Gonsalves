@@ -27,7 +27,7 @@ package-lock.json
 # Configs e ambientes
 # --------------------
 .env
-.env.local
+.env.localgit add .
 
 # --------------------
 # Vercel
