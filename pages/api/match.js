@@ -60,7 +60,9 @@ export default async function handler(req, res) {
 
   try {
     // Garante que a conexão com o MongoDB esteja ativa
-    if (!client.isConnected) await client.connect();
+    if (!client.topology || !client.topology.isConnected()) {
+      await client.connect();
+    }    
 
     // Acessa o banco e a coleção de usuários
     const db = client.db("legalai");
