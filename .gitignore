@@ -1,4 +1,6 @@
+# --------------------
 # Logs
+# --------------------
 logs
 *.log
 npm-debug.log*
@@ -7,18 +9,49 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# --------------------
+# Build / Output
+# --------------------
+dist/
+dist-ssr/
 *.local
 
-# Editor directories and files
-.vscode/*
+# --------------------
+# Dependências
+# --------------------
+node_modules/
+package-lock.json
+
+# --------------------
+# Configs e ambientes
+# --------------------
+.env
+.env.local
+
+# --------------------
+# Vercel
+# --------------------
+.vercel/
+
+# --------------------
+# Arquivos de sistema / editor
+# --------------------
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
+Thumbs.db
+
+# --------------------
+# Arquivos do Visual Studio
+# --------------------
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# --------------------
+# Arquivos pessoais / extras
+# --------------------
+comands.txt

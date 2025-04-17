@@ -19,3 +19,13 @@ npx --package tailwindcss tailwindcss init -p
 
 npm cache clean --force
 
+
+
+git init
+git add .
+git commit -m "MVP Legal.AI"
+
+
+
+git remote add origin https://github.com/seu-usuario/desafio-legalai.git
+git push -u origin main
