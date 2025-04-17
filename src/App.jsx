@@ -1,33 +1,32 @@
 import { useState } from "react";
 
-const mockResults = [
-  {
-    nome: "Carlos Silva",
-    descricao: "Advogado entusiasta de IA e inovação jurídica.",
-    afinidade: 82,
-  },
-  {
-    nome: "Fernanda Rocha",
-    descricao: "Desenvolvedora focada em justiça digital.",
-    afinidade: 76,
-  },
-  {
-    nome: "João Pedro",
-    descricao: "Estudante de direito com paixão por tecnologia.",
-    afinidade: 89,
-  },
-];
-
 export default function App() {
   const [form, setForm] = useState({ nome: "", area: "", local: "" });
   const [resultados, setResultados] = useState([]);
+  const [carregando, setCarregando] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    setResultados(mockResults);
+  const handleSubmit = async () => {
+    setCarregando(true);
+    try {
+      const response = await fetch("/api/match", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(form)
+      });
+
+      const data = await response.json();
+      setResultados(data.matches || []);
+    } catch (err) {
+      alert("Erro ao buscar conexões.");
+      console.error(err);
+    }
+    setCarregando(false);
   };
 
   return (
@@ -67,8 +66,9 @@ export default function App() {
         <button
           onClick={handleSubmit}
           className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition"
+          disabled={carregando}
         >
-          Buscar Conexões
+          {carregando ? "Buscando..." : "Buscar Conexões"}
         </button>
 
         {resultados.length > 0 && (
@@ -84,7 +84,7 @@ export default function App() {
                 <h3 className="text-lg font-bold text-blue-700">
                   {pessoa.nome}
                 </h3>
-                <p className="text-sm text-gray-700">{pessoa.descricao}</p>
+                <p className="text-sm text-gray-700">{pessoa.area} — {pessoa.local}</p>
                 <p className="mt-2 font-medium text-green-600">
                   Afinidade: {pessoa.afinidade}%
                 </p>
